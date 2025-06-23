@@ -1,0 +1,41 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: {
+    extend: {
+      colors: {
+        'rotary-royal-blue': '#17458f',
+        'rotary-gold': '#f7a81b',
+        'rotary-azure': '#0067c8',
+        'rotary-sky-blue': '#00a2e0',
+        'rotary-cranberry': '#d41367',
+        'rotary-cardinal': '#e02927',
+        'rotary-turquoise': '#00adbb',
+        'rotary-orange': '#ff7600',
+        'rotary-violet': '#901f93',
+        'rotary-grass': '#009739',
+        'rotary-powder-blue': '#b9d9eb',
+        'rotary-moss': '#a7aca2',
+        'rotary-lavender': '#c6bcd0',
+        'rotary-taupe': '#d9c89e',
+        'rotary-stone': '#9ba4b4',
+        'rotary-slate': '#657f99',
+        'rotary-charcoal': '#54565a',
+        'rotary-pewter': '#898a8d',
+        'rotary-smoke': '#b1b1b1',
+        'rotary-silver': '#d0cfcd',
+        'rotary-storm': '#7a6e66',
+        'rotary-ash': '#968b83',
+        'rotary-platinum': '#bfb7b0',
+        'rotary-cloud': '#d6d1ca',
+        'white': '#ffffff',
+        'black': '#000000',
+      },
+      fontFamily: {
+        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        serif: ['Georgia', 'Times New Roman', 'serif'],
+      },
+    },
+  },
+  plugins: [],
+}

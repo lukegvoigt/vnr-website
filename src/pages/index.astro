@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const posts = [
+  {
+    id: 1,
+    title: "Annual Charity Golf Tournament Announced",
+    date: "October 26, 2023",
+    excerpt: "Join us for a day of fun and fundraising at our annual golf tournament. All proceeds go to local community projects. Sign up your team today!",
+    author: "John Doe",
+  },
+  {
+    id: 2,
+    title: "Guest Speaker: Dr. Jane Smith on Local Literacy",
+    date: "October 19, 2023",
+    excerpt: "This week, we were honored to have Dr. Jane Smith discuss the importance of early childhood literacy and how our club can make a difference.",
+    author: "Sarah Adams",
+  },
+  {
+    id: 3,
+    title: "Successful Food Drive for the Community Food Bank",
+    date: "October 12, 2023",
+    excerpt: "A huge thank you to everyone who donated to our recent food drive. We collected over 500 pounds of non-perishable items for families in need.",
+    author: "Mike Wilson",
+  }
+];
+---
+
+<Layout title="Valdosta North Rotary Club | Service Above Self">
+  <header class="bg-rotary-royal-blue text-white p-4 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/">
+        <img src="https://i.ibb.co/xKXZxxKv/VNR-Logo-Cropped.png" alt="Valdosta North Rotary Club Logo" class="h-16 bg-white p-1 rounded" />
+      </a>
+      <nav>
+        <a href="#about" class="px-4 hover:text-rotary-gold transition-colors">About Us</a>
+        <a href="#visiting" class="px-4 hover:text-rotary-gold transition-colors">Visit Us</a>
+        <a href="#posts" class="px-4 hover:text-rotary-gold transition-colors">News</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative h-[60vh] bg-cover bg-center text-white" style="background-image: url('https://i.ibb.co/Q9dF0sD/rotary-collage.jpg');">
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <div class="relative container mx-auto h-full flex flex-col justify-center items-center text-center">
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-4">Service Above Self</h1>
+        <p class="text-xl md:text-2xl font-light">Connecting leaders, solving community challenges in Valdosta.</p>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-rotary-royal-blue mb-6">About Our Club</h2>
+        <p class="max-w-3xl mx-auto text-lg leading-relaxed">
+          The Valdosta North Rotary Club is a diverse group of professional leaders dedicated to making a positive impact in our community and around the world. We are part of Rotary International, a global network of 1.4 million neighbors, friends, and problem-solvers who see a world where people unite and take action to create lasting change. Our members are committed to the motto "Service Above Self," working on projects that address literacy, health, poverty, and more.
+        </p>
+      </div>
+    </section>
+
+    <!-- Visiting Section -->
+    <section id="visiting" class="bg-gray-100 py-20">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-rotary-royal-blue mb-6">Interested in Visiting?</h2>
+        <p class="max-w-3xl mx-auto text-lg leading-relaxed mb-8">
+          We welcome guests and prospective members to join our weekly meetings. It's a great opportunity to network with community leaders, learn about our projects, and see what Rotary is all about.
+        </p>
+        <div class="bg-white p-8 rounded-lg shadow-lg inline-block">
+          <h3 class="text-2xl font-bold text-gray-800">Meeting Details</h3>
+          <p class="text-lg mt-2"><strong>When:</strong> Every Thursday at 12:30 PM</p>
+          <p class="text-lg"><strong>Where:</strong> Valdosta Country Club, 3500 Country Club Dr, Valdosta, GA 31602</p>
+          <a href="mailto:info@valdostanorthrotary.org" class="mt-6 inline-block bg-rotary-gold text-rotary-royal-blue font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition-colors">Contact Us to Visit</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Posts Section -->
+    <section id="posts" class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-rotary-royal-blue mb-12 text-center">Club News & Updates</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map(post => (
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+              <div class="p-6">
+                <p class="text-sm text-gray-500 mb-2">{post.date}</p>
+                <h3 class="text-2xl font-bold text-rotary-royal-blue mb-3">{post.title}</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">{post.excerpt}</p>
+                <a href="#" class="font-bold text-rotary-gold hover:underline">Read More &rarr;</a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-rotary-royal-blue text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; {new Date().getFullYear()} Valdosta North Rotary Club. All Rights Reserved.</p>
+    </div>
+  </footer>
+</Layout>
