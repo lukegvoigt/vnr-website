@@ -1,0 +1,60 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={`${post.data.title} | Valdosta North Rotary Club`}>
+  <header class="bg-rotary-royal-blue text-white p-4 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/">
+        <img src="https://i.ibb.co/wFFxwLcL/Rotary-Logo-EN21-white.png" alt="Rotary International Logo" class="h-16" />
+      </a>
+      <nav>
+        <a href="/" class="px-4 hover:text-rotary-gold transition-colors">Home</a>
+        <a href="/#about" class="px-4 hover:text-rotary-gold transition-colors">About Us</a>
+        <a href="/#visiting" class="px-4 hover:text-rotary-gold transition-colors">Visit Us</a>
+        <a href="/news" class="px-4 hover:text-rotary-gold transition-colors">News</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <article class="py-20">
+      <div class="container mx-auto px-6 max-w-4xl">
+        <a href="/news" class="inline-flex items-center text-rotary-royal-blue hover:text-rotary-gold mb-8 font-semibold">
+          &larr; Back to All News
+        </a>
+        
+        <header class="mb-8">
+          <h1 class="text-5xl font-bold text-rotary-royal-blue mb-4">{post.data.title}</h1>
+          <div class="flex items-center text-gray-600 space-x-4">
+            <p>{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            <span>•</span>
+            <p>By {post.data.author}</p>
+          </div>
+        </header>
+
+        <div class="prose prose-lg max-w-none">
+          <Content />
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="bg-rotary-royal-blue text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; {new Date().getFullYear()} Valdosta North Rotary Club. All Rights Reserved.</p>
+    </div>
+  </footer>
+</Layout>
