@@ -46,7 +46,40 @@ The site is configured to run on:
 - **Build**: `npm run build`
 - **Run**: Preview server on port 5000
 
+## Content Management
+### Blog Posts System
+- Uses Astro Content Collections for managing blog posts
+- Posts are stored as Markdown files in `src/content/posts/`
+- Each post includes frontmatter with: title, date, excerpt, author
+- Homepage automatically displays the 3 most recent posts
+- `/news` page displays all posts
+- Individual post pages at `/posts/[slug]` with full markdown rendering
+- Tailwind Typography plugin for beautiful markdown styling
+
+### Adding a New Post
+1. Create a new `.md` file in `src/content/posts/`
+2. Add frontmatter:
+   ```yaml
+   ---
+   title: "Your Post Title"
+   date: 2025-10-16
+   excerpt: "A brief summary of the post"
+   author: "Author Name"
+   ---
+   ```
+3. Write your content in Markdown below the frontmatter
+4. The post will automatically appear on the homepage and news page
+
 ## Recent Changes
+- **2025-10-16**: Content collection system implemented
+  - Set up Astro content collections for blog posts
+  - Created markdown-based post system
+  - Added `/news` page to display all posts
+  - Individual post pages with full markdown rendering
+  - Homepage shows 3 most recent posts automatically
+  - Installed Tailwind Typography plugin for markdown styling
+  - Updated meeting details to First and Third Tuesday at noon
+
 - **2025-10-16**: Initial setup for Replit environment
   - Configured Astro to run on port 5000 with host 0.0.0.0
   - Set up workflow for development server
