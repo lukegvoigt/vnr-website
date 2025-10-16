@@ -56,7 +56,18 @@ The site is configured to run on:
 - Individual post pages at `/posts/[slug]` with full markdown rendering
 - Tailwind Typography plugin for beautiful markdown styling
 
-### Adding a New Post
+### Admin Portal (Decap CMS)
+- **Access**: Visit `/admin/index.html` to access the admin portal
+- **Authentication**: Login with GitHub (requires OAuth app setup)
+- **Features**: 
+  - View all blog posts in a user-friendly interface
+  - Create new posts with a form
+  - Edit existing posts
+  - Delete posts
+  - Upload images
+  - Changes automatically commit to GitHub
+
+### Adding a New Post (Manual Method)
 1. Create a new `.md` file in `src/content/posts/`
 2. Add frontmatter:
    ```yaml
@@ -69,6 +80,13 @@ The site is configured to run on:
    ```
 3. Write your content in Markdown below the frontmatter
 4. The post will automatically appear on the homepage and news page
+
+### Adding a New Post (Admin Portal Method)
+1. Visit `/admin/index.html`
+2. Login with GitHub
+3. Click "New Blog Posts"
+4. Fill out the form
+5. Click "Publish" - changes will automatically commit to GitHub
 
 ## Recent Changes
 - **2025-10-16**: Content collection system implemented
