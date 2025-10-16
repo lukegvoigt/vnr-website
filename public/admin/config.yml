@@ -2,6 +2,8 @@ backend:
   name: github
   repo: lukegvoigt/vnr-website
   branch: main
+  base_url: https://b7dc7eeb-ccf2-4963-b2f9-658c10d74553-00-2qx2zc3ri3851.picard.replit.dev
+  auth_endpoint: /api/auth
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
