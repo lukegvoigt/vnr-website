@@ -1,29 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-const posts = [
-  {
-    id: 1,
-    title: "Annual Charity Golf Tournament Announced",
-    date: "October 26, 2023",
-    excerpt: "Join us for a day of fun and fundraising at our annual golf tournament. All proceeds go to local community projects. Sign up your team today!",
-    author: "John Doe",
-  },
-  {
-    id: 2,
-    title: "Guest Speaker: Dr. Jane Smith on Local Literacy",
-    date: "October 19, 2023",
-    excerpt: "This week, we were honored to have Dr. Jane Smith discuss the importance of early childhood literacy and how our club can make a difference.",
-    author: "Sarah Adams",
-  },
-  {
-    id: 3,
-    title: "Successful Food Drive for the Community Food Bank",
-    date: "October 12, 2023",
-    excerpt: "A huge thank you to everyone who donated to our recent food drive. We collected over 500 pounds of non-perishable items for families in need.",
-    author: "Mike Wilson",
-  }
-];
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 ---
 
 <Layout title="Valdosta North Rotary Club | Service Above Self">
@@ -85,13 +67,16 @@ const posts = [
           {posts.map(post => (
             <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
               <div class="p-6">
-                <p class="text-sm text-gray-500 mb-2">{post.date}</p>
-                <h3 class="text-2xl font-bold text-rotary-royal-blue mb-3">{post.title}</h3>
-                <p class="text-gray-700 leading-relaxed mb-4">{post.excerpt}</p>
-                <a href="#" class="font-bold text-rotary-gold hover:underline">Read More &rarr;</a>
+                <p class="text-sm text-gray-500 mb-2">{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <h3 class="text-2xl font-bold text-rotary-royal-blue mb-3">{post.data.title}</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">{post.data.excerpt}</p>
+                <a href={`/posts/${post.slug}`} class="font-bold text-rotary-gold hover:underline">Read More &rarr;</a>
               </div>
             </div>
           ))}
+        </div>
+        <div class="text-center mt-12">
+          <a href="/news" class="inline-block bg-rotary-royal-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-colors">View All News Posts</a>
         </div>
       </div>
     </section>
