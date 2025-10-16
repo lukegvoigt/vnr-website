@@ -1,12 +1,16 @@
-export async function GET({ request, url }) {
-  const code = url.searchParams.get('code');
+const fetch = require('node-fetch');
+
+exports.handler = async (event) => {
+  const code = event.queryStringParameters.code;
   
   if (!code) {
-    return new Response('No code provided', { status: 400 });
+    return {
+      statusCode: 400,
+      body: 'No code provided',
+    };
   }
 
   try {
-    // Exchange code for access token
     const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
       method: 'POST',
       headers: {
@@ -14,8 +18,8 @@ export async function GET({ request, url }) {
         'Accept': 'application/json',
       },
       body: JSON.stringify({
-        client_id: import.meta.env.OAUTH_CLIENT_ID,
-        client_secret: import.meta.env.OAUTH_CLIENT_SECRET,
+        client_id: process.env.OAUTH_CLIENT_ID,
+        client_secret: process.env.OAUTH_CLIENT_SECRET,
         code: code,
       }),
     });
@@ -24,10 +28,12 @@ export async function GET({ request, url }) {
     const accessToken = data.access_token;
 
     if (!accessToken) {
-      return new Response('Failed to get access token', { status: 400 });
+      return {
+        statusCode: 400,
+        body: 'Failed to get access token',
+      };
     }
 
-    // Send token back to Decap CMS
     const html = `
       <!DOCTYPE html>
       <html>
@@ -53,14 +59,18 @@ export async function GET({ request, url }) {
       </html>
     `;
 
-    return new Response(html, {
-      status: 200,
+    return {
+      statusCode: 200,
       headers: {
         'Content-Type': 'text/html',
       },
-    });
+      body: html,
+    };
   } catch (error) {
     console.error('OAuth error:', error);
-    return new Response('Authentication failed', { status: 500 });
+    return {
+      statusCode: 500,
+      body: 'Authentication failed',
+    };
   }
-}
+};

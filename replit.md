@@ -88,7 +88,34 @@ The site is configured to run on:
 4. Fill out the form
 5. Click "Publish" - changes will automatically commit to GitHub
 
+## Netlify Deployment
+The site is configured for deployment on Netlify with the following setup:
+
+### Environment Variables (Add in Netlify Dashboard)
+1. Go to **Site settings** → **Environment variables**
+2. Add these two variables:
+   - `OAUTH_CLIENT_ID` - Your GitHub OAuth App Client ID
+   - `OAUTH_CLIENT_SECRET` - Your GitHub OAuth App Client Secret
+
+### GitHub OAuth App Configuration
+1. In your GitHub OAuth App settings, set the **Authorization callback URL** to:
+   - `https://your-netlify-site.netlify.app/.netlify/functions/callback`
+2. Replace `your-netlify-site` with your actual Netlify site URL
+
+### Build Settings
+- Build command: `npm run build`
+- Publish directory: `dist`
+- Node version: 20
+
+The OAuth authentication is handled by Netlify Functions located in `/netlify/functions/`
+
 ## Recent Changes
+- **2025-10-16**: Netlify deployment configuration
+  - Created Netlify Functions for GitHub OAuth authentication
+  - Configured netlify.toml for proper build settings
+  - Updated admin portal to work with Netlify serverless functions
+  - Fixed secret exposure in build output
+
 - **2025-10-16**: Content collection system implemented
   - Set up Astro content collections for blog posts
   - Created markdown-based post system
