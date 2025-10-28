@@ -20,3 +20,13 @@ collections:
       - { label: "Excerpt", name: "excerpt", widget: "text" }
       - { label: "Author", name: "author", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
+  
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "upcoming"
+        label: "Upcoming Page"
+        file: "src/data/upcoming.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string", default: "Upcoming Events & Announcements" }
+          - { label: "Page Content", name: "body", widget: "markdown", hint: "Edit the content of the Upcoming page here. Use markdown formatting." }

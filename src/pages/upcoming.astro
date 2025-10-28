@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { readFileSync } from 'fs';
+import { marked } from 'marked';
+
+const upcomingContent = readFileSync('src/data/upcoming.md', 'utf-8');
+const parts = upcomingContent.split('---');
+const content = parts.length > 2 ? parts.slice(2).join('---').trim() : upcomingContent;
+const htmlContent = marked(content);
+---
+
+<Layout title="Upcoming Events | Valdosta North Rotary Club">
+  <header class="bg-rotary-royal-blue text-white p-4 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/">
+        <img src="https://i.ibb.co/wFFxwLcL/Rotary-Logo-EN21-white.png" alt="Rotary International Logo" class="h-16" />
+      </a>
+      <nav>
+        <a href="/" class="px-4 hover:text-rotary-gold transition-colors">Home</a>
+        <a href="/upcoming" class="px-4 text-rotary-gold transition-colors">Upcoming</a>
+        <a href="/news" class="px-4 hover:text-rotary-gold transition-colors">News</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-rotary-royal-blue text-white py-20">
+      <div class="container mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold mb-4">Upcoming Events & Announcements</h1>
+        <p class="text-xl">Stay informed about what's happening at Valdosta North Rotary Club</p>
+      </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="py-20">
+      <div class="container mx-auto px-6 max-w-4xl">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <article class="prose prose-lg max-w-none prose-headings:text-rotary-royal-blue prose-a:text-rotary-gold prose-a:no-underline hover:prose-a:underline">
+            <Fragment set:html={htmlContent} />
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-rotary-royal-blue text-white py-8 mt-20">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 Valdosta North Rotary Club. All rights reserved.</p>
+    </div>
+  </footer>
+</Layout>

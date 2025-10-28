@@ -13,11 +13,21 @@ This is the official website for the Valdosta North Rotary Club, built with Astr
 ```
 /
 ├── public/              # Static assets (favicon)
+│   └── admin/          # Decap CMS admin portal
 ├── src/
 │   ├── components/      # Reusable Astro components
+│   ├── content/         # Content collections
+│   │   └── posts/      # Blog posts (markdown files)
+│   ├── data/           # Page content (markdown files)
+│   │   └── upcoming.md # Upcoming page content
 │   ├── layouts/         # Page layouts
-│   ├── pages/           # Route pages (index.astro)
+│   ├── pages/           # Route pages
+│   │   ├── index.astro # Homepage
+│   │   ├── news.astro  # News listing
+│   │   ├── upcoming.astro # Upcoming events
+│   │   └── posts/      # Dynamic post pages
 │   └── styles/          # Global CSS styles
+├── netlify/functions/   # Netlify serverless functions for OAuth
 ├── astro.config.mjs     # Astro configuration
 ├── tailwind.config.cjs  # Tailwind configuration with Rotary colors
 └── package.json         # Dependencies and scripts
@@ -29,7 +39,9 @@ This is the official website for the Valdosta North Rotary Club, built with Astr
 - Hero section with background image
 - About section describing the club
 - Meeting details and contact information
-- News/updates section with sample posts
+- News/updates section with blog posts
+- Upcoming events page for member communication
+- Decap CMS admin portal for content management
 
 ## Development Setup
 The site is configured to run on:
@@ -60,12 +72,11 @@ The site is configured to run on:
 - **Access**: Visit `/admin/index.html` to access the admin portal
 - **Authentication**: Login with GitHub (requires OAuth app setup)
 - **Features**: 
-  - View all blog posts in a user-friendly interface
-  - Create new posts with a form
-  - Edit existing posts
-  - Delete posts
+  - Manage blog posts: View, create, edit, and delete
+  - Manage the Upcoming page content
   - Upload images
   - Changes automatically commit to GitHub
+  - User-friendly interface with markdown editor
 
 ### Adding a New Post (Manual Method)
 1. Create a new `.md` file in `src/content/posts/`
@@ -88,6 +99,17 @@ The site is configured to run on:
 4. Fill out the form
 5. Click "Publish" - changes will automatically commit to GitHub
 
+### Updating the Upcoming Page
+The Upcoming Events page can be updated through the admin portal:
+1. Visit `/admin/index.html`
+2. Login with GitHub
+3. Click "Pages" → "Upcoming Page"
+4. Edit the content using markdown formatting
+5. Click "Save" - changes automatically commit to GitHub
+6. The content is stored in `src/data/upcoming.md`
+
+The page displays at `/upcoming` and is linked in the site navigation.
+
 ## Netlify Deployment
 The site is configured for deployment on Netlify with the following setup:
 
@@ -99,8 +121,8 @@ The site is configured for deployment on Netlify with the following setup:
 
 ### GitHub OAuth App Configuration
 1. In your GitHub OAuth App settings, set the **Authorization callback URL** to:
-   - `https://your-netlify-site.netlify.app/.netlify/functions/callback`
-2. Replace `your-netlify-site` with your actual Netlify site URL
+   - `https://valdostanorthrotary.netlify.app/.netlify/functions/callback`
+2. Make sure the URL matches exactly (case-sensitive, no trailing slash)
 
 ### Build Settings
 - Build command: `npm run build`
@@ -110,6 +132,13 @@ The site is configured for deployment on Netlify with the following setup:
 The OAuth authentication is handled by Netlify Functions located in `/netlify/functions/`
 
 ## Recent Changes
+- **2025-10-28**: Added Upcoming Events page
+  - Created `/upcoming` page for member communication
+  - Added CMS management for the Upcoming page
+  - Updated site navigation to include Upcoming link
+  - Content stored in `src/data/upcoming.md` (editable via admin portal)
+  - Fixed Astro content collection conflicts
+
 - **2025-10-16**: Netlify deployment configuration
   - Created Netlify Functions for GitHub OAuth authentication
   - Configured netlify.toml for proper build settings
